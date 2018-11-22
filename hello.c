@@ -8,6 +8,7 @@ int main()
         printf("on this line\n");
     else
         printf("but not here\n");
+    printf("Tests finished\n");
 
     return 0;
 }
