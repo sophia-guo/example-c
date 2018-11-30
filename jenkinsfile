@@ -1,5 +1,12 @@
 pipeline {
-    agent { label 'ub14x64rt2-1' }
+   	agent { label 'ub14x64rt2-1' }
+    	parameters {
+		string (defaultValue: "", description: 'codecov repo token', name: 'CODECOV_TOKEN')
+		
+	}
+	environment {
+		CODECOV_TOKEN=${CODECOV_TOKEN}
+	}
 	stages {
 	    stage('Build') {
             steps {
@@ -18,7 +25,7 @@ pipeline {
 	}
 	post {
         always {
-          sh "curl -s https://codecov.io/bash | bash -s - -t 397a0b37-aacb-407c-a194-a5ba3f353f4e || echo 'Codecov did not collect coverage reports'"
+          sh "curl -s https://codecov.io/bash | bash -s - -t ${CODECOV_TOKEN} || echo 'Codecov did not collect coverage reports'"
           cleanWs()
         }
     }
