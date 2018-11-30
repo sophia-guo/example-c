@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+	stages {
+	    stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+	    stage('Test') {
+	      steps {
+	        sh '''
+	        gcc -Wall -fprofile-arcs -ftest-coverage hello.c -o hello
+			./hello
+			gcov hello.c
+	        '''
+	      }
+	    }
+	}
+	post {
+        always {
+          sh "curl -s https://codecov.io/bash | bash || echo 'Codecov did not collect coverage reports'"
+        }
+    }
+}
