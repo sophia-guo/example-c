@@ -18,7 +18,7 @@ pipeline {
 	}
 	post {
         always {
-          sh "curl -s https://codecov.io/bash | bash -t :aea2469ff75dd367c54cab74babfe3105405c194 || echo 'Codecov did not collect coverage reports'"
+          sh "curl -s https://codecov.io/bash | bash -s - -t aea2469ff75dd367c54cab74babfe3105405c194 || echo 'Codecov did not collect coverage reports'"
           cleanWs()
         }
     }
