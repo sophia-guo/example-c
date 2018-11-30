@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'ci.role.test&&hw.arch.x86&&sw.os.linux' }
+    agent { label 'ub14x64rt2-1' }
 	stages {
 	    stage('Build') {
             steps {
