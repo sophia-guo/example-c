@@ -1,11 +1,13 @@
 #include <stdio.h>
 
-static int t = 0;
+static int t = 1;
 
 int main()
 {
-    if (t)
+    if (t) {
         printf("on this line\n");
+        printf("increase line coverage\n");
+    }
     else {
         printf("but not here\n");
     }
