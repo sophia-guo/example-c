@@ -5,7 +5,7 @@ pipeline {
 		
 	}
 	environment {
-		CODECOV_TOKEN=${CODECOV_TOKEN}
+		CODECOV_TOKEN="${CODECOV_TOKEN}"
 	}
 	stages {
 	    stage('Build') {
