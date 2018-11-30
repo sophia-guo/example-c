@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'ci.role.test&&hw.arch.x86&&sw.os.linux' }
 	stages {
 	    stage('Build') {
             steps {
@@ -11,14 +11,14 @@ pipeline {
 	        sh '''
 	        gcc -Wall -fprofile-arcs -ftest-coverage hello.c -o hello
 			./hello
-			gcov hello.c
-	        '''
+			'''
 	      }
 	    }
 	}
 	post {
         always {
           sh "curl -s https://codecov.io/bash | bash || echo 'Codecov did not collect coverage reports'"
+          cleanWs()
         }
     }
 }
